@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Midterm 2: Dash</title>
+		<style>
+            body {
+                font-size: 1.5em ;
+            }
+            .page {
+                width: 11.5in ;
+                margin: auto ;
+            }
+            .page_outer {
+                width: 11in;
+                box-shadow: -.1in -.1in .25in darkgray, .1in .1in .25in gray;
+                position: relative ;
+            }
+            .page_inner{
+                margin: 1in;  
+                margin-top: .5in;  
+            }
+            th {
+                text-align: center ;
+                height: 1.5em;
+                width: 1.5em;
+                font-weight:normal;
+            }
+            td {
+                border: solid ;
+                height: 1.5em;
+                width: 1.5em;
+                
+            }
+            .details, .show, .hide:target {
+                display: none;
+            }
+            .hide:target + .show, .hide:target ~ .details {
+                display: block;
+            }
+            .c {
+                background-color: #66BB66
+            }
+            .p {
+                background-color: #CCBB66 
+            }
+            .m {
+                background-color: #999999 
+            }
+            .u {
+                background-color: #FFFFFF 
+            }
+		</style>
+		<style type="text/css" media="print">
+			.page {
+				width: 8.5in;
+				height: 11in;
+				margin: auto ;
+			}
+			.page_outer {
+				box-shadow: none;
+			}
+			a {
+				color: black;
+				text-decoration-line: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<div style="height:.25in;"> <!-- Vertical space adjuster for box shadow --></div>
+			<div class="page_outer">
+				<div style="height:.25in;"> <!-- Vertical space adjuster for box shadow --></div>
+				<div class="page_inner"><center>
+					<h1>Midterm 2: Dash</h1>
+                    <h3>60 minutes. Individual. Open note.</h3>
+                    </center>
+                    <hr>
+                    <div>
+                        <a id="hide1" href="#hide1" class="hide"><h3>A. Starting Template [Show]</h3></a>
+                        <a id="show1" href="#show1" class="show"><h3>A. Starting Template [Hide]</h3></a>
+                        <div class="details">
+                            <p><strong>Point totals are provided as expectations of effort. I intend to "curve" point totals.</strong>
+                            <p>This midterm is composed of 3 milestones, each roughly equivalent to two questions on a practice midterm. Each of the problems works together to create one, single, more expansive assignment. Before getting the milestones, there are a few introductory remarks.
+                            <p>Additionally, this project will involve working with <code>pgl.py</code>. You should already be familiar.
+                            <hr>
+                            <h2>Files:</h2>
+                            <ul>
+                                <li>Update (only) this file:
+                                <ul>
+                                    <li><code>dash.py</code></li>
+                                </ul>
+                                <li>You will also need:
+                                <ul>
+                                    <li><code>pgl.py</code></li>
+                                </ul>
+                            </ul>
+                            <p>The template file "dash.py" is initially as follows:
+                            <hr>
+                            <pre style="font-size:larger"><code >from pgl import *
+
+# Constants
+WINDOW = 400
+TICK_MS = 100
+
+# Derived Constants
+BLOCK = WINDOW / 10
+GROUND = WINDOW - BLOCK
+GRAVITY = BLOCK / 4
+FLOOR = GROUND - BLOCK 
+DANGER = 3 * BLOCK
+
+# Window setup
+gw = GWindow(WINDOW,WINDOW)
+
+# ground code here, possibly
+
+# player code here, possibly
+
+# hazard code here, possibly
+
+def tick():
+    pass
+
+def jump(e):
+    pass
+
+# Event setup
+gw.set_interval(tick, TICK_MS)
+gw.add_event_listener("click", jump)</code></pre><hr>
+                            <p>You should be able to run <code>dash.py</code> as soon as you download the code. It will create a blank window.
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <a id="hide2" href="#hide2" class="hide"><h3>B. What is Dash? [Show]</h3></a>
+                        <a id="show2" href="#show2" class="show"><h3>B. What is Dash? [Hide]</h3></a>
+                        <div class="details">
+                                                
+                            <p>Dash is inspired by the "Geometry Dash" mobile game, but is ultimately more in common with the "Chrome Dino Game". You can play it <a href="https://chrome-dino-game.github.io/">here.</a>.
+                            <p>Basically, there are three objects:
+                            <ol>
+                                <li>The ground.
+                                <li>The player.
+                                <li>The hazard.
+                            </ol>
+                            <p>There is one input control, which causes the player to jump, being displaced upward in the window from the ground momentarily before returning. Meanwhile, hazards progress leftward across the window along the ground, with a new hazard emerging from the right once the previous hazard has gone out of the window to the left.
+                            <p>The example game uses SPACEBAR to jump, we will use a click, and we will have exactly one hazard in the window at all times. Otherwise, the implementation will be identical, except for using rectables for the player and the hazard.
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <a id="hide3" href="#hide3" class="hide"><h3>C. What is <code style="font-size:larger">pgl.py</code> [Show]</h3></a>
+                        <a id="show3" href="#show3" class="show"><h3>C. What is <code style="font-size:larger">pgl.py</code> [Hide]</h3></a>
+                        <div class="details">
+                            <ul>
+                                <li><a href="https://jrembold.github.io/Website_Backup/class_files/cs151/PythonSummary.html">Prof. Jed Rembold notes on PGL (and more)</a></li>
+                                <li><a href="https://willamette.edu/~esroberts/python/pgldoc/">Prof. Eric Roberts notes on PGL</a></li>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <a id="hideE" href="#hideE" class="hide"><h3>D. Hint: Mathematics [Show]</h3></a>
+                        <a id="showE" href="#showE" class="show"><h3>D. Hint: Mathematics [Hide]</h3></a>
+                        <div class="details">
+                            <p>Jump velocity just so happens to be governed by calculus, and we will accidentally do a bit of calculus to get jumping to feel right.
+                            <p>Do not be alarmed, the calculus is no different from anything else you've done this term, such as on the pyramid of asterisks, and is only coincidentally calculus.
+                            <p>Simply avoid thinking about the mathematics if it is stressful to you, your "feel" for how jumping should work will likely be quite accurate.
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <a id="hide5" href="#hide5" class="hide"><h3>0. Ground [Show]</h3></a>
+                        <a id="show5" href="#show5" class="show"><h3>0. Ground [Hide]</h3></a>
+                        <div class="details">
+                            <b>Milestone 0: 10 points.</b>
+                            <p><em>This task creates the ground from which the player may jump and upon which the hazard progresses leftward.</em></p>
+                            <p>Create a <code>GLine</code> that is <code>BLOCK</code> from the bottom of the window. The <code>GROUND</code> constant is provided to assist you. It will look like this:</p>
+                            <script>
+                                function ground(c)
+                                {
+                                    c.beginPath();
+                                    c.moveTo(0, 360);
+                                    c.lineTo(400, 360);
+                                    c.stroke();
+                                }
+                            
+                                function m0()
+                                {
+                                    const c = document.getElementById("c0").getContext("2d");
+                                    ground(c);
+                                }    
+                            </script>
+                            <center>
+                                <canvas style="align:center;outline-style: solid" width="400" height="400" id="c0"></canvas>
+                                <p><button onclick="m0()">gw.add(line)</button>
+                            </center>
+                            <p>Once your "dash.py" displays something representing the ground, begin Milestone 1.
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <a id="hide6" href="#hide6" class="hide"><h3>1. Player [Show]</h3></a>
+                        <a id="show6" href="#show6" class="show"><h3>1. Player [Hide]</h3></a>
+                        <div class="details">
+                            <b>Milestone 1: 70 points</b>
+                            <p><em>This task adds a "player" <code>GRect</code> and enables "jumping" via the combination of a  "tick" interval event listener and a "jump" click event listener.</em></p>
+                            <h4>1a: Add Player: 10 points</h4>
+                            <p>Create a <code>GRect</code> that is <code>BLOCK</code> from the left of the window and <code>BLOCK</code> from the bottom of the window. The <code>FLOOR</code> constant is provided to assist you. It will look like this:</p>
+                            <script>
+                                function player(c, y)
+                                {
+                                    c.fillStyle = "hotpink";
+                                    c.fillRect(40, y, 40, 40) ;
+                                }
+                                
+                                function m1a()
+                                {
+                                    const c = document.getElementById("c1a").getContext("2d");
+                                    ground(c);
+                                    player(c, 320)
+                                }    
+                            </script>
+                            <center>
+                                <canvas style="align:center;outline-style: solid" width="400" height="400" id="c1a"></canvas>
+                                <p><button onclick="m1a()">gw.add(gw.player)</button>
+                            </center>
+                            <p>Color is up to you; I used <code>"hot pink"</code>. Once your "dash.py" displays something representing the ground and player, begin Milestone 1b.
+                            <h4>1b: Set up the timer: 40 points</h4>
+                            <p>Create a <code>tick</code> function that moves the "player" upward by <code>BLOCK</code> every <code>TICK_MS</code> time units. At first, this will promptly move the player to, then off, the top of the window.</p>
+                            <script>
+                                let ticker;
+                                function m1b()
+                                {
+                                    const c = document.getElementById("c1b").getContext("2d");
+                                    ground(c);
+                                    let y = 320;
+                                    function tick1b()
+                                    {
+                                        c.clearRect(0,0,400,400);
+                                        ground(c);
+                                        player(c,  y);
+                                        y -= 40;
+                                    }
+                                    clearInterval(ticker);
+                                    ticker = setInterval(tick1b, 100);
+                                }
+                            </script>
+                            <center>
+                                <canvas style="align:center;outline-style: solid" width="400" height="400" id="c1b"></canvas>
+                                <p><button onclick="m1b()">gw.set_interval(tick, TICK_MS)</button>
+                            </center>
+                            <p>Then, decrease the upward movement by <code>GRAVITY</code> every tick. With the default constants, the "player" will move upward by 40, then 30, then 20, and so on, and then beginning falling. It will look like this:
+                            <script>
+                                let dy;
+                                function m1b2()
+                                {
+                                    const c = document.getElementById("c1b2").getContext("2d");
+                                    ground(c);
+                                    let y = 320;
+                                    dy = 40;
+                                    function tick1b2()
+                                    {
+                                        c.clearRect(0,0,400,400);
+                                        ground(c);
+                                        player(c,  y);
+                                        y -= dy;
+                                        dy -= 10;
+                                    }
+                                    clearInterval(ticker);
+                                    ticker = setInterval(tick1b2, 100);
+                                }
+                            </script>
+                            <center>
+                                <canvas style="align:center;outline-style: solid" width="400" height="400" id="c1b2"></canvas>
+                                <p><button onclick="m1b2()">gw.set_interval(tick, TICK_MS)</button>
+                            </center>
+                            <p>Lastly, stop the player upon reaching the ground.
+                            <script>
+                                function m1b3()
+                                {
+                                    const c = document.getElementById("c1b3").getContext("2d");
+                                    ground(c);
+                                    let y = 320;
+                                    let dy = 40;
+                                    function tick1b3()
+                                    {
+                                        c.clearRect(0,0,400,400);
+                                        ground(c);
+                                        player(c,  y < 320 ? y : 320);
+                                        y -= dy;
+                                        dy -= 10;
+                                    }
+                                    clearInterval(ticker);
+                                    ticker = setInterval(tick1b3, 100);
+                                }
+                            </script>
+                            <center>
+                                <canvas style="align:center;outline-style: solid" width="400" height="400" id="c1b3"></canvas>
+                                <p><button onclick="m1b3()">gw.set_interval(tick, TICK_MS)</button>
+                            </center>
+                            <p>Once your "dash.py" safely launches the player off the ground, then lands safely, begin Milestone 1c.
+                            <h4>1c: Set up the listener: 20 points</h4>
+                            <p>Create a <code>jump</code> function (and modify your <code>tick</code> function, such that:
+                            <ul>
+                                <li>Initially, the player is not in motion.</li>
+                                <li>Upon a click event, the player changes to in motion:
+                                    <ul>
+                                        <li>I simply had a variable (<code>air</code>) that I changed from <code>False</code> to <code>True</code>.
+                                    </ul>
+                                </li>
+                                <li>The player may not restart a jump while in the air.
+                            </ul>
+                            <script>
+                                let air = false;
+                                function jump()
+                                {
+                                    if (!air)
+                                    {
+                                        air = true;
+                                        dy = 40;
+                                        y = 320;
+                                    }
+                                }
+                                function m1c()
+                                {
+                                    const c = document.getElementById("c1c").getContext("2d");
+                                    ground(c);
+                                    player(c,  320)
+                                    let y = 320;
+                                    clearInterval(ticker);
+                                    function tick1c()
+                                    {   
+                                        if (air) 
+                                        {
+                                            c.clearRect(0,0,400,400);
+                                            ground(c);
+                                            if (y > 320)
+                                            {
+                                                air = false;
+                                                dy = 0;
+                                                y = 320;
+                                                player(c,  320);
+                                            } else {
+                                                player(c,  y);
+                                                y -= dy;
+                                                dy -= 10;
+                                            }
+                                        }
+                                    }
+                                    clearInterval(ticker);
+                                    ticker = setInterval(tick1c, 100);
+                                    document.getElementById("c1c").addEventListener('click', jump);
+                                }
+                            </script>
+                            <center>
+                                <canvas style="align:center;outline-style: solid" width="400" height="400" id="c1c"></canvas>
+                                <p><button onclick="m1c()">gw.add_event_listener("click", jump)</button>
+                            </center>      
+                            <p>Once your "dash.py" safely launches the player off the ground, then lands safely, repeatedly and in response to clicks while grounded, begin Milestone 2.
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <a id="hide7" href="#hide7" class="hide"><h3>2. Hazard [Show]</h3></a>
+                        <a id="show7" href="#show7" class="show"><h3>2. Hazard [Hide]</h3></a>
+                        <div class="details">
+                            <b>Milestone 2: 20+ points</b>
+                            <p><em>This task adds a "hazard" <code>GRect</code> and enables game termination upon collision via changes to the "tick" interval event listener.</em></p>
+                            <h4>2a: Add Hazard: 0 points</h4>
+                            <p>Create a <code>GRect</code> that is <code>WINDOW</code> from the left of the window and <code>BLOCK</code> from the bottom of the window. The <code>FLOOR</code> constant is provided to assist you. It will not be visible, yet.</p>
+                            <h4>2b: Move Hazard: 10 points</h4>
+                            <p>Update <code>tick</code> such that the "hazard" moves <code>BLOCK</code> toward the left on each clock tick.</p>
+                            <p>Once the hazard as gone of the left side of the window, start it again at the right side.
+                            <p>Below I have removed the player and am showing <i>only</i> the hazard, for clarity. A correct solution will have both a hazard and a player.
+                            <script>
+                                function hazard(c, x)
+                                {
+                                    c.fillStyle = "olivedrab";
+                                    c.fillRect(x, 320, 40, 40) ;
+                                }
+                                function m2b()
+                                {
+                                    const c = document.getElementById("c2b").getContext("2d");
+                                    ground(c);
+                                    let x = 400;
+                                    hazard(c, x);
+                                    function tick2b()
+                                    {   
+                                        c.clearRect(0,0,400,400);
+                                        ground(c);
+                                        x -= 40;
+                                        x = x < 0 ? 400 : x;
+                                        hazard(c, x)
+                                    }
+                                    clearInterval(ticker);
+                                    ticker = setInterval(tick2b, 100);
+                                }
+                            </script>
+                            <center>
+                                <canvas style="align:center;outline-style: solid" width="400" height="400" id="c2b"></canvas>
+                                <p><button onclick="m2b()">gw.set_interval(tick, TICK_MS)</button>
+                            </center>  
+                            <p>Color is up to you; I used <code>"olive drab"</code>. Once your "dash.py" implements a moving hazard, begin Milestone 2c.
+                            <h4>2c: Game Over: 10 points</h4>
+                            <p>Update <code>tick</code> such that if any part of "hazard" overlaps any part of "player" the game terminates in a loss for the player. There is a very easy way to do this, or you can use the corner checking technique from breakout.</p>
+                            <p>I did this by calling <code>exit()</code> to close the graphics window. I additionally printed a score, though maintaining a score is optional.
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="height:1in;"> <!-- Vertical space adjuster for box shadow --></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
